@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a22d0e9-405f-4377-8544-4d9fd6b658bc" name="Changes" comment="pacman goal based ai model.&#10;semi working condition.">
+    <list default="true" id="8a22d0e9-405f-4377-8544-4d9fd6b658bc" name="Changes" comment="working pacman game">
+      <change afterPath="$PROJECT_DIR$/Agent.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Environment.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -12,6 +14,13 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,7 +112,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1710067858829</updated>
-      <workItem from="1710067862402" duration="14919000" />
+      <workItem from="1710067862402" duration="16485000" />
     </task>
     <task id="LOCAL-00001" summary="pacman goal based ai model.&#10;semi working condition.">
       <option name="closed" value="true" />
@@ -113,7 +122,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710079806134</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="working pacman game">
+      <option name="closed" value="true" />
+      <created>1710083123889</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1710083123889</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -121,9 +138,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="pacman goal based ai model.&#10;semi working condition." />
-    <option name="LAST_COMMIT_MESSAGE" value="pacman goal based ai model.&#10;semi working condition." />
+    <MESSAGE value="working pacman game" />
+    <option name="LAST_COMMIT_MESSAGE" value="working pacman game" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/pacman$main.coverage" NAME="main Coverage Results" MODIFIED="1710082948861" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pacman$main.coverage" NAME="main Coverage Results" MODIFIED="1710083973499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
