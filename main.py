@@ -11,8 +11,9 @@ class State(Enum):
 
 
 stateCount = {
-    State.Ghost: 3,
-    State.Cherry: 6,
+    State.Ghost: 4,
+    State.Cherry: 5
+    ,
     State.Food_Pallet: 6
 }
 
@@ -48,68 +49,62 @@ class Agent(Environment):
 
         foodLeft = stateCount[State.Food_Pallet]
         while foodLeft > 0:
+            os.system('clear')
+            if self.cherry_power_up_cooldown > 0:
+                print("Cherry Power Up!!!", self.cherry_power_up_cooldown, "s LEFT!")
             self.show_game()
             options = self.options_to_move()
+            priority = {option: 0 for option in options} # 4 for food, 3 for cherry, 2 for when there is ghost and cherry is eaten. 1 for empty. 0 for ghost.
             options_left = len(options)
-            print([row for row in options])
             input("Press any key to continue...\n")
-            backtrack = []
             for option in options:
 
                 if self.grid[option[0]][option[1]] == State.Food_Pallet.value:
+                    priority[option] = 4
+
+                elif self.grid[option[0]][option[1]] == State.Cherry.value:
+                    priority[option] = 3
+
+                elif (self.grid[option[0]][option[1]] == State.Ghost.value) and self.cherry_power_up_cooldown > 0:
+                    priority[option] = 2
+
+                elif self.grid[option[0]][option[1]] == State.Empty.value:
+                    priority[option] = 1
+                options_left -= 1
+
+
+            maxPriority = max(priority.values())
+            if maxPriority > 0:
+                option = next((key for key, value in priority.items() if value == maxPriority), None)
+                if maxPriority == 4:
                     self.move(option)
                     foodLeft -= 1
                     self.cherry_power_up_cooldown -= 1
                     self.grid[option[0]][option[1]] = State.Empty.value
-                    break
-                elif self.grid[option[0]][option[1]] == State.Cherry.value:
-                    if options_left > 0:
-                        backtrack = option
-                        options_left -= 1
-                        continue
+                elif maxPriority == 3:
                     self.move(option)
                     self.cherry_power_up_cooldown = 3
                     self.grid[option[0]][option[1]] = State.Empty.value
-
-                    break
-                elif (self.grid[option[0]][option[1]] == State.Ghost.value) and self.cherry_power_up_cooldown > 0:
-                    if options_left > 0:
-                        options_left -= 1
-                        continue
+                elif maxPriority == 2:
                     self.move(option)
                     self.cherry_power_up_cooldown -= 1
-                    break
-                elif self.grid[option[0]][option[1]] == State.Empty.value:
-                    if options_left > 0:
-                        if not backtrack:
-                            # if (self.grid[backtrack[0]][backtrack[1]] != State.Cherry.value
-                            #         or self.grid[backtrack[0]][backtrack[1]] != State.Ghost.value):
-                            backtrack = option
-                        options_left -= 1
-                        continue
-
+                elif maxPriority == 1:
                     self.move(option)
                     self.cherry_power_up_cooldown -= 1
-                    break
-                options_left -= 1
             else:
-                if backtrack:
-                    self.move(backtrack)
-                    self.cherry_power_up_cooldown -= 1
-                print("No more options")
+                print("No more moves!!!")
                 quit()
 
-            #os.system('clear')
             self.game = self.grid_to_game()
             self.game[self.row][self.col] = 'ᗧ'
+        os.system('clear')
+        self.show_game()
 
     def options_to_move(self):
         offsets = [(0, 1), (0, -1), (1, 0), (-1, 0)]
         adjacent_coordinates = [(self.row + dr, self.col + dc) for dr, dc in offsets if
                                 0 <= self.row + dr <= 3 and 0 <= self.col + dc <= 3]
-        # adjacent_coordinates = [
-        #     (r, c) for r, c in adjacent_coordinates if 0 <= r <= 3 and 0 <= c <= 3
-        # ]
+
         return adjacent_coordinates
 
     def move(self, new_pos):
